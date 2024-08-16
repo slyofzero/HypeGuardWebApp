@@ -1,6 +1,12 @@
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export default function Home() {
+  const router = useRouter();
+  const { channelId } = router.query;
+
+  console.log(channelId);
+
   useEffect(() => {
     // Initialize Telegram Web App
     if (typeof window !== "undefined" && window.Telegram?.WebApp) {
@@ -11,10 +17,13 @@ export default function Home() {
   const handleVerification = () => {
     // Handle the verification process
     alert("Verification complete!");
-    console.log(window.Telegram);
-    if (typeof window !== "undefined" && window.Telegram?.WebApp) {
-      window.Telegram.WebApp.close();
-    }
+
+    window.location.href = "https://t.me/+jfswi1k_rH8xOTg1";
+
+    // console.log(window.Telegram);
+    // if (typeof window !== "undefined" && window.Telegram?.WebApp) {
+    //   window.Telegram.WebApp.close();
+    // }
   };
 
   return (
