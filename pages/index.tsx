@@ -1,29 +1,27 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   const { channelId } = router.query;
-
+  const [inviteLink, setInviteLink] = useState("");
   console.log(channelId);
 
   useEffect(() => {
-    // Initialize Telegram Web App
-    if (typeof window !== "undefined" && window.Telegram?.WebApp) {
-      window.Telegram.WebApp.ready();
-    }
-  }, []);
+    const body = JSON.stringify({ channelId });
+
+    const getLink = async () => {
+      const response = await fetch("/api/getChannel", { body, method: "POST" });
+      const { link } = await response.json();
+
+      if (link) setInviteLink(link);
+    };
+
+    getLink();
+  }, [channelId]);
 
   const handleVerification = () => {
-    // Handle the verification process
-    alert("Verification complete!");
-
-    window.location.href = "https://t.me/+jfswi1k_rH8xOTg1";
-
-    // console.log(window.Telegram);
-    // if (typeof window !== "undefined" && window.Telegram?.WebApp) {
-    //   window.Telegram.WebApp.close();
-    // }
+    if (inviteLink) window.location.href = inviteLink;
   };
 
   return (
