@@ -3,25 +3,25 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
-  const { channelId } = router.query;
-  const [inviteLink, setInviteLink] = useState("");
-  console.log(channelId);
+  const { param } = router.query;
+  // const [inviteLink, setInviteLink] = useState("");
+  console.log(param);
 
-  useEffect(() => {
-    const body = JSON.stringify({ channelId });
+  // useEffect(() => {
+  //   const body = JSON.stringify({ channelId });
 
-    const getLink = async () => {
-      const response = await fetch("/api/getChannel", { body, method: "POST" });
-      const { link } = await response.json();
+  //   const getLink = async () => {
+  //     const response = await fetch("/api/getChannel", { body, method: "POST" });
+  //     const { link } = await response.json();
 
-      if (link) setInviteLink(link);
-    };
+  //     if (link) setInviteLink(link);
+  //   };
 
-    getLink();
-  }, [channelId]);
+  //   getLink();
+  // }, [channelId]);
 
   const handleVerification = () => {
-    if (inviteLink) window.location.href = inviteLink;
+    if (param && typeof param === "string") window.location.href = param;
   };
 
   return (
