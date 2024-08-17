@@ -1,29 +1,12 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   const { param } = router.query;
-  const [inviteLink, setInviteLink] = useState<string>(String(param));
-  console.log(param);
-
-  // useEffect(() => {
-  //   const body = JSON.stringify({ channelId });
-
-  //   const getLink = async () => {
-  //     const response = await fetch("/api/getChannel", { body, method: "POST" });
-  //     const { link } = await response.json();
-
-  //     if (link) setInviteLink(link);
-  //   };
-
-  //   getLink();
-  // }, [channelId]);
 
   const handleVerification = () => {
     if (param && typeof param === "string") {
       if (param.startsWith("?")) {
-        setInviteLink(param.substring(1));
         window.location.href = param.substring(1);
       }
     }
@@ -37,8 +20,6 @@ export default function Home() {
       >
         Verify Now
       </button>
-
-      <span className="text-white">{inviteLink}</span>
     </div>
   );
 }
