@@ -25,13 +25,15 @@ export default function Home() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen w-screen text-black">
+    <div className="flex items-center justify-center h-screen w-screen text-black gap-4">
       <button
         onClick={handleVerification}
         className="bg-white px-4 py-2 text-lg"
       >
         Verify Now
       </button>
+
+      <span className="text-white">{param}</span>
     </div>
   );
 }
