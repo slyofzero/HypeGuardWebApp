@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const router = useRouter();
   const { param } = router.query;
-  // const [inviteLink, setInviteLink] = useState("");
+  const [inviteLink, setInviteLink] = useState<string>(String(param));
   console.log(param);
 
   // useEffect(() => {
@@ -21,7 +21,12 @@ export default function Home() {
   // }, [channelId]);
 
   const handleVerification = () => {
-    if (param && typeof param === "string") window.location.href = param;
+    if (param && typeof param === "string") {
+      if (param.startsWith("?")) {
+        setInviteLink(param.substring(1));
+        window.location.href = param.substring(1);
+      }
+    }
   };
 
   return (
@@ -33,7 +38,7 @@ export default function Home() {
         Verify Now
       </button>
 
-      <span className="text-white">{param}</span>
+      <span className="text-white">{inviteLink}</span>
     </div>
   );
 }
