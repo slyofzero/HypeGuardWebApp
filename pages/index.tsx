@@ -16,7 +16,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col text-white items-center justify-center h-screen w-screen bg-black gap-8">
+    <div className="flex flex-col text-white items-center justify-center h-screen w-screen bg-[#212121] gap-8">
       <div className="flex flex-col gap-2 items-center">
         <h1 className="font-extrabold text-3xl">Human Verification</h1>
         <h2 className="text-md font-bold text-telegram-text mt-2">
